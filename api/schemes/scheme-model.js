@@ -30,9 +30,15 @@ module.exports = {
     WHERE s.scheme_id = 5
     ORDER BY s.step_number;  */
   },
-   async add(scheme){
-      const newScheme = await db('schemes').insert(scheme); 
+  async add(scheme) {
+    const newScheme = await db("schemes").insert(scheme);
 
-      return db('schemes').where('id', newScheme); 
-  }
+    return db("schemes").where("id", newScheme);
+  },
+  update(changes, id) {
+    return db("schemes").where("id", id).update(changes);
+  },
+  remove(id) {
+    return db("schemes").where('id', id).del(); 
+  },
 };
